@@ -152,7 +152,19 @@ void toybox_main(void)
     toys.optc = 0;
     toy_exec(toys.argv+1);
     if (toys.argv[1][0] == '-') goto list;
-    
+   
+    // strip the last char from toys.argv[1] and try again
+    // supporting command like sorts
+    int length = strlen(toys.argv[1]);
+    toys.argv[1][length-1] = 0;
+    toy_exec(toys.argv+1);
+
+    // strip the last char from toys.argv[1] and try again
+    // supporting command like sortss
+    int length1 = strlen(toys.argv[1]);
+    toys.argv[1][length1-1] = 0;
+    toy_exec(toys.argv+1);
+
     error_exit("Unknown command %s",toys.argv[1]);
   }
 

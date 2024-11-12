@@ -152,7 +152,8 @@ void toybox_main(void)
     toys.optc = 0;
     toy_exec(toys.argv+1);
     if (toys.argv[1][0] == '-') goto list;
-   
+  
+    // 20230608
     // strip the last char from toys.argv[1] and try again
     // supporting command like sorts
     int length = strlen(toys.argv[1]);

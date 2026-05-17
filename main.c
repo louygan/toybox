@@ -195,6 +195,9 @@ int main(int argc, char *argv[])
     // Trim path off of command name
     *argv = basename(*argv);
 
+    // Treat "t" and "tt" as aliases for the toybox multiplexer
+    if (!strcmp(*argv, "t") || !strcmp(*argv, "tt")) *argv = "toybox";
+
     // Call the multiplexer, adjusting this argv[] to be its' argv[1].
     // (It will adjust it back before calling toy_exec().)
     toys.argv = argv-1;
